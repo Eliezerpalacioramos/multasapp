@@ -1,0 +1,39 @@
+name: multasapp
+description: "Aplicación para registro y gestión de multas por agentes de tránsito."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  image_picker: ^0.8.9
+  flutter_sound: ^9.0.0 # Use this line for audio recording functionality
+
+  sqflite: ^2.2.0+4
+  path: ^1.8.2
+
+  http: ^1.3.0 # Updated version
+  provider: ^6.1.2 # Updated version
+  geolocator: ^13.0.3 # Updated version
+  camera: ^0.11.1 # Updated version
+  audioplayers: ^6.4.0 # Updated version
+  path_provider: ^2.1.5 # Updated version
+
+  shared_preferences: ^2.5.2 # Updated version
+  intl: ^0.20.2 # Updated version
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/semaforo.jpg
+    - assets/agente.jpg
+    - assets/icono_app.jpg
