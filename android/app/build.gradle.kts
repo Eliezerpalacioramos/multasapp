@@ -5,11 +5,13 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+import java.util.Properties
+import java.io.FileInputStream
+
 android {
     namespace = "com.example.multasapp"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
-
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -34,17 +36,19 @@ android {
 
     buildTypes {
         release {
+            val keystoreProperties = Properties()
+            val keystorePropertiesFile = rootProject.file("key.properties")
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+            }
             signingConfig = signingConfigs.create("release") {
-                storeFile = file("path/to/your/keystore.jks")
-
-
-                storePassword = "your_keystore_password"
-                keyAlias = "your_key_alias"
-                keyPassword = "your_key_password"
+                storeFile = file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
             }
         }
     }
-
 }
 
 flutter {
